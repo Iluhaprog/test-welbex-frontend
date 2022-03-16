@@ -1,10 +1,11 @@
 import * as React from "react"
-import { Form, Input, Button, notification } from "antd"
+import { Form, Input, Button } from "antd"
 import env from "react-dotenv"
 import PropTypes from "prop-types"
 import { Navigate } from "react-router-dom"
-import { $authStore, setToken } from "../../shared/model/user"
 import { useStore } from "effector-react"
+import { $authStore, setToken } from "../../shared/model/user"
+import { showSuccess, showErrors } from "../../shared/lib/notifications"
 
 export function AuthForm ({
 	type
@@ -111,18 +112,4 @@ function signUp (username, password) {
 			}
 			return data
 		})
-}
-
-function showErrors (err) {
-	Array.isArray(err.message)
-		? err.message.forEach((msg) => {
-			notification.error({ description: msg })
-		})
-		: notification.error({ description: err.message })
-}
-
-function showSuccess () {
-	notification.success({
-		description: "Complete!"
-	})
 }

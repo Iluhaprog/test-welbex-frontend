@@ -33,7 +33,7 @@ window.env = {
   "npm_package_version": "0.1.0",
   "VTE_VERSION": "6602",
   "WAYLAND_DISPLAY": "wayland-0",
-  "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/954a25c6_55d9_43fe_a897_4c55581c512f",
+  "GNOME_TERMINAL_SCREEN": "/org/gnome/Terminal/screen/ffb98500_c933_4df1_bd4c_3b8366430f37",
   "INIT_CWD": "/home/ilya/Documents/projects/frontend/test-welbex-frontend",
   "npm_lifecycle_script": "react-dotenv && PORT=3001 react-scripts start",
   "MOZ_GMP_PATH": "/usr/lib64/mozilla/plugins/gmp-gmpopenh264/system-installed",
@@ -67,7 +67,7 @@ window.env = {
   "npm_config_global_prefix": "/home/ilya/.asdf/installs/nodejs/17.4.0/.npm",
   "MAIL": "/var/spool/mail/ilya",
   "npm_node_execpath": "/home/ilya/.asdf/installs/nodejs/17.4.0/bin/node",
-  "OLDPWD": "/home/ilya/Documents/projects/frontend",
+  "OLDPWD": "/home/ilya",
   "BASH_FUNC_which%%": "() {  ( alias;\n eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot \"$@\"\n}",
   "_": "/home/ilya/Documents/projects/frontend/test-welbex-frontend/node_modules/.bin/react-dotenv",
   "API_URL": "http://localhost:3000"
