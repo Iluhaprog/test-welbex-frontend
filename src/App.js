@@ -19,6 +19,7 @@ function App () {
 					<Route path="/sign-in" element={<SignInPage />} />
 					<Route path="/sign-up" element={<SignUpPage />} />
 					<Route path="/wall" element={<WallPage />} />
+					<Route path="/wall/:username" element={<WallPage />} />
 					<Route path="/redact" element={<RedactPostPage />}/>
 				</Routes>
 			</div>
