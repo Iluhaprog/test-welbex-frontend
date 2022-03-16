@@ -21,6 +21,7 @@ function App () {
 					<Route path="/wall" element={<WallPage />} />
 					<Route path="/wall/:username" element={<WallPage />} />
 					<Route path="/redact" element={<RedactPostPage />}/>
+					<Route path="/redact/:forUpdate" element={<RedactPostPage />} />
 				</Routes>
 			</div>
 		</>

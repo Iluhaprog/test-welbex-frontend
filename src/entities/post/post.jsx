@@ -3,6 +3,7 @@ import { Card, Image, Row } from "antd"
 import ReactPlayer from "react-player"
 import PropTypes from "prop-types"
 import { RemovePost } from "../../feature/remove-post"
+import { UpdatePost } from "../../feature/update-post"
 
 export function Post ({
 	author,
@@ -20,7 +21,10 @@ export function Post ({
 					<b>Created at:</b>
 					{new Date(createdAt).toDateString()} - {new Date(createdAt).toTimeString().split(" ")[0]}
 				</h5>
-				<RemovePost postId={post.id}/>
+				<Row>
+					<UpdatePost postId={post.id} />
+					<RemovePost postId={post.id} />
+				</Row>
 			</Row>
 		} >
 			<p>

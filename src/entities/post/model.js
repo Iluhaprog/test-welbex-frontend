@@ -3,6 +3,7 @@ import { createEffect, createEvent, createStore, sample } from "effector"
 import env from "react-dotenv"
 
 const setData = createEvent("set-data")
+export const selectPost = createEvent("select-post")
 export const removePost = createEvent("remove-post")
 export const getPostsEvent = createEffect("get-posts-event")
 
@@ -12,6 +13,7 @@ export const getPosts = createEffect(async ({ username, page, limit, ...rest }) 
 })
 
 export const $postsStore = createStore({
+	selected: {},
 	username: "",
 	elements: [],
 	page: 1,
@@ -24,6 +26,12 @@ export const $postsStore = createStore({
 		elements: store.elements.filter(({ id }) => postId !== id)
 	}))
 	.on(getPostsEvent, (store, { username }) => ({ ...store, username }))
+	.on(selectPost, (store, { id }) => {
+		return ({
+			...store,
+			selected: store.elements.find((el) => el.id === id)
+		})
+	})
 
 sample({
 	clock: getPostsEvent,
