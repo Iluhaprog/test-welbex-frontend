@@ -2,7 +2,7 @@ import * as React from "react"
 import { Row, Layout, Menu, Typography, Col, Button } from "antd"
 import { Link } from "react-router-dom"
 import { useStore } from "effector-react"
-import { $authStore } from "../../shared/model/user"
+import { $authStore, setToken } from "../../shared/model/user"
 
 export function Header () {
 	const isAuthorized = !!useStore($authStore).token
@@ -18,20 +18,15 @@ export function Header () {
 				<Col span={17}>
 					<Menu theme="dark" mode="horizontal">
 						<Menu.Item key="item-1">
-							<Link to="/redact-post" key="redact-post-link">
-                    Wall
+							<Link to="/wall" key="redact-post-link">
+								Wall
 							</Link>
 						</Menu.Item>
 						{isAuthorized
 							? (<>
 								<Menu.Item key="item-2">
-									<Link to="/redact-post" key="redact-post-link">
+									<Link to="/redact" key="redact-post-link">
                     New post
-									</Link>
-								</Menu.Item>
-								<Menu.Item key="item-3">
-									<Link to="/redact-post" key="redact-post-link">
-                    My wall
 									</Link>
 								</Menu.Item>
 							</>)
@@ -61,7 +56,17 @@ export function Header () {
 								</Row>
 							</Col>
 						)
-						: (<></>)
+						: (<>
+							<Col span={5}>
+								<Row justify="end">
+									<Col>
+										<Button danger type="primary" onClick={() => setToken("")}>
+											Logout
+										</Button>
+									</Col>
+								</Row>
+							</Col>
+						</>)
 				}
 			</Row>
 		</Layout.Header>

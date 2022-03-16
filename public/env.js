@@ -1,6 +1,6 @@
 window.env = {
   "SHELL": "/bin/bash",
-  "npm_command": "run-script",
+  "npm_command": "start",
   "SESSION_MANAGER": "local/unix:@/tmp/.ICE-unix/4495,unix/unix:/tmp/.ICE-unix/4495",
   "npm_config_userconfig": "/home/ilya/.npmrc",
   "COLORTERM": "truecolor",
@@ -70,5 +70,5 @@ window.env = {
   "OLDPWD": "/home/ilya/Documents/projects/frontend",
   "BASH_FUNC_which%%": "() {  ( alias;\n eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot \"$@\"\n}",
   "_": "/home/ilya/Documents/projects/frontend/test-welbex-frontend/node_modules/.bin/react-dotenv",
-  "API_URL": "http://localhost:3000/"
+  "API_URL": "http://localhost:3000"
 };

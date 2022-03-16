@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.19.2",
     "effector": "^22.2.0",
+    "effector-localstorage": "^0.5.3",
     "effector-react": "^22.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
