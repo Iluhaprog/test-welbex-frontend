@@ -1,0 +1,41 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "import/prefer-default-export": "off",
+        "no-param-reassign": ["error", { 
+            "props": false 
+        }],
+        "no-use-before-define": ["error", { 
+            "functions": false, 
+            "classes": true, 
+            "variables": true 
+        }],
+        "quotes": ["error", "double"],
+        "max-params": ["error", 3],
+        "no-plusplus": "error",
+        "semi": "error",
+        "array-bracket-spacing": ["error", "always"],
+        "indent": ["error", "tab"],
+        "no-tabs": ["error", { 
+            "allowIndentationTabs": true 
+        }],
+        "comma-style": ["error", "last"]
+    }
+}
