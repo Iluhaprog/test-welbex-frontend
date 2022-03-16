@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Form, Input, Button } from "antd"
+import { Form, Input, Button, notification } from "antd"
 import env from "react-dotenv"
 import PropTypes from "prop-types"
 import { Navigate } from "react-router-dom"
@@ -10,15 +10,19 @@ export function AuthForm ({
 	type
 }) {
 	const isAuthorized = !!useStore($authStore).token
+	const [ isCreated, setIsCreated ] = React.useState(false)
 
 	const onFinish = (values) => {
 		switch (type) {
 		case "sign-in":
 			signIn(values.username, values.password)
-				.then((res) => res.json())
 				.then(data => setToken(data.access_token))
 			break
 		case "sign-up":
+			signUp(values.username, values.password)
+				.then(() => {
+					setIsCreated(true)
+				})
 			break
 		}
 	}
@@ -26,6 +30,8 @@ export function AuthForm ({
 	const onFinishFailed = (errorInfo) => {
 		console.log("Failed:", errorInfo)
 	}
+
+	if (isCreated) return <Navigate to="/sign-in" />
 
 	return isAuthorized
 		? (
@@ -72,15 +78,51 @@ AuthForm.propTypes = {
 	type: PropTypes.oneOf([ "sign-in", "sign-up" ])
 }
 
-function signIn (username, password, onComplete) {
+function signIn (username, password) {
 	return fetch(`${env.API_URL}/auth/sign-in`, {
 		method: "POST",
 		headers: {
 			Authorization: `Basic ${btoa(`${username}:${password}`)}`
 		}
 	})
+		.then((res) => res.json())
 }
 
-// function signUp () {
+function signUp (username, password) {
+	return fetch(`${env.API_URL}/auth/sign-up`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			username,
+			password
+		})
+	})
+		.then((res) => {
+			if (res.status >= 400) return res.json()
+			return ""
+		})
+		.then((data) => {
+			if (data && data.error) {
+				showErrors(data)
+			} else {
+				showSuccess()
+			}
+			return data
+		})
+}
 
-// }
+function showErrors (err) {
+	Array.isArray(err.message)
+		? err.message.forEach((msg) => {
+			notification.error({ description: msg })
+		})
+		: notification.error({ description: err.message })
+}
+
+function showSuccess () {
+	notification.success({
+		description: "Complete!"
+	})
+}

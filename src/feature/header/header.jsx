@@ -10,12 +10,12 @@ export function Header () {
 	return (
 		<Layout.Header>
 			<Row>
-				<Col span={2}>
+				<Col span={3}>
 					<Typography.Title level={2} style={{ color: "#fff", paddingTop: "8px" }}>
             Blog
 					</Typography.Title>
 				</Col>
-				<Col span={17}>
+				<Col span={15}>
 					<Menu theme="dark" mode="horizontal">
 						<Menu.Item key="item-1">
 							<Link to="/wall" key="redact-post-link">
