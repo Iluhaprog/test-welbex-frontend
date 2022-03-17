@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Card, Image, Row } from "antd"
+import { Card, Image, Row, Col } from "antd"
 import ReactPlayer from "react-player"
 import PropTypes from "prop-types"
 import { RemovePost } from "../../feature/remove-post"
@@ -10,6 +10,16 @@ export function Post ({
 	post,
 	createdAt
 }) {
+	const [ otherFiles, setOtherFiles ] = React.useState([])
+
+	React.useEffect(() => {
+		const others = post.files.filter((file) => {
+			return !/(?:jpg|gif|png|bmp|jpeg)$/.test(file.type) &&
+							!/(mp4)$/.test(file.type)
+		})
+		setOtherFiles(others)
+	}, [])
+
 	return (
 		<Card title={
 			<Row justify="space-between" align="middle">
@@ -52,6 +62,23 @@ export function Post ({
 					})
 				}
 			</Row>
+			{
+				otherFiles.length
+					? (
+						<Row>
+							<Col>
+								<h3 style={{ paddingTop: "10px" }}>Others</h3>
+								{
+									otherFiles.map((file) => (
+										<div key={file.url}>
+											<a href={file.url} target="_blank" rel="noreferrer">{file.url}</a>
+										</div>
+									))
+								}
+							</Col>
+						</Row>
+					)
+					: (<></>)}
 		</Card>
 	)
 }
