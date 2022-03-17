@@ -1,6 +1,5 @@
 
 import { createEffect, createEvent, createStore, sample } from "effector"
-import env from "react-dotenv"
 
 const setData = createEvent("set-data")
 export const selectPost = createEvent("select-post")
@@ -9,7 +8,7 @@ export const removePost = createEvent("remove-post")
 export const getPostsEvent = createEffect("get-posts-event")
 
 export const getPosts = createEffect(async ({ username, page, limit, ...rest }) => {
-	const res = await fetch(`${env.API_URL}/posts/${username}/${page}/${limit}`)
+	const res = await fetch(`${process.env.REACT_APP_API_URL}/posts/${username}/${page}/${limit}`)
 	return res.json()
 })
 

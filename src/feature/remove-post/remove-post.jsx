@@ -2,7 +2,7 @@ import * as React from "react"
 import { Button, Spin } from "antd"
 import { useStore } from "effector-react"
 import PropTypes from "prop-types"
-import env from "react-dotenv"
+
 import { $authStore } from "../../shared/model/user"
 import { removePost } from "../../entities/post/model"
 import { showSuccess } from "../../shared/lib/notifications"
@@ -32,7 +32,7 @@ RemovePost.propTypes = {
 }
 
 function remove (postId, token, setIsFetch) {
-	fetch(`${env.API_URL}/posts/${postId}`, {
+	fetch(`${process.env.REACT_APP_API_URL}/posts/${postId}`, {
 		method: "DELETE",
 		headers: {
 			Authorization: `Bearer ${token}`

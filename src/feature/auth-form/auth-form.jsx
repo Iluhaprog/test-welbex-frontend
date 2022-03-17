@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Form, Input, Button } from "antd"
-import env from "react-dotenv"
+
 import PropTypes from "prop-types"
 import { Navigate } from "react-router-dom"
 import { useStore } from "effector-react"
@@ -80,7 +80,7 @@ AuthForm.propTypes = {
 }
 
 function signIn (username, password) {
-	return fetch(`${env.API_URL}/auth/sign-in`, {
+	return fetch(`${process.env.REACT_APP_API_URL}/auth/sign-in`, {
 		method: "POST",
 		headers: {
 			Authorization: `Basic ${btoa(`${username}:${password}`)}`
@@ -90,7 +90,7 @@ function signIn (username, password) {
 }
 
 function signUp (username, password) {
-	return fetch(`${env.API_URL}/auth/sign-up`, {
+	return fetch(`${process.env.REACT_APP_API_URL}/auth/sign-up`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"

@@ -1,12 +1,12 @@
 import { Input, Button, Upload, Spin } from "antd"
 import { useStore } from "effector-react"
 import * as React from "react"
-import env from "react-dotenv"
+
 import { Navigate } from "react-router-dom"
 import { $authStore } from "../../shared/model/user"
 import { LoadingOutlined } from "@ant-design/icons"
 import PropTypes from "prop-types"
-import { $postsStore, cleanSelectedPost } from "../../entities/post/model"
+import { $postsStore } from "../../entities/post/model"
 import { showErrors, showSuccess } from "../../shared/lib/notifications"
 
 export function Redactor ({ forUpdate }) {
@@ -23,7 +23,7 @@ export function Redactor ({ forUpdate }) {
 
 	React.useEffect(() => {
 		if (fileToRemove?.url) {
-			fetch(`${env.API_URL}/file/remove?url=${fileToRemove.url}`, {
+			fetch(`${process.env.REACT_APP_API_URL}/file/remove?url=${fileToRemove.url}`, {
 				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${token}`
@@ -65,7 +65,7 @@ export function Redactor ({ forUpdate }) {
 			</Upload>
 			<Button block type="primary" onClick={() => {
 				setIsFetch(true)
-				fetch(`${env.API_URL}/posts`, {
+				fetch(`${process.env.REACT_APP_API_URL}/posts`, {
 					method: forUpdate ? "PUT" : "POST",
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -86,7 +86,7 @@ export function Redactor ({ forUpdate }) {
 							if (file.isNew) {
 								const fd = new FormData()
 								fd.append("file", file.originFileObj)
-								fetch(`${env.API_URL}/file/upload/${data.id}`, {
+								fetch(`${process.env.REACT_APP_API_URL}/file/upload/${data.id}`, {
 									method: "POST",
 									headers: {
 										Authorization: `Bearer ${token}`
