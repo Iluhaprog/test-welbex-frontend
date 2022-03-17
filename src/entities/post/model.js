@@ -4,6 +4,7 @@ import env from "react-dotenv"
 
 const setData = createEvent("set-data")
 export const selectPost = createEvent("select-post")
+export const cleanSelectedPost = createEvent("clean-selected-post")
 export const removePost = createEvent("remove-post")
 export const getPostsEvent = createEffect("get-posts-event")
 
@@ -32,6 +33,10 @@ export const $postsStore = createStore({
 			selected: store.elements.find((el) => el.id === id)
 		})
 	})
+	.on(cleanSelectedPost, (store) => ({
+		...store,
+		selected: {}
+	}))
 
 sample({
 	clock: getPostsEvent,
