@@ -65,9 +65,8 @@ export function Post ({
 			{
 				otherFiles.length
 					? (
-						<Row>
+						<Row style={{ paddingTop: "20px" }}>
 							<Col>
-								<h3 style={{ paddingTop: "10px" }}>Others</h3>
 								{
 									otherFiles.map((file) => (
 										<div key={file.url}>
